@@ -1,8 +1,8 @@
 package com.idird.taxcalculator.strategy;
 
+import com.idird.taxcalculator.constants.TaxConstants;
 import com.idird.taxcalculator.domain.product.Product;
 
-import java.lang.ref.PhantomReference;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -24,7 +24,6 @@ public class TaxCalculationStrategyImpl implements TaxCalculationStrategy {
             return taxAmount;
         }
 
-        //TODO
         if (p_product.getPrice() == null || p_product.getPrice().compareTo(BigDecimal.ZERO) == 0) {
             return taxAmount;
         }

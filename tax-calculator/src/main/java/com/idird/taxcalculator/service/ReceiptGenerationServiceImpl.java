@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class ReceiptServiceImpl implements ReceiptService {
+public class ReceiptGenerationServiceImpl implements ReceiptGenerationService {
 
     private final TaxCalculationStrategy taxCalculationStrategy;
 
-    public ReceiptServiceImpl(TaxCalculationStrategy p_taxCalculationStrategy) {
+    public ReceiptGenerationServiceImpl(TaxCalculationStrategy p_taxCalculationStrategy) {
         this.taxCalculationStrategy = p_taxCalculationStrategy;
     }
 

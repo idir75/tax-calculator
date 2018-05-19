@@ -3,8 +3,8 @@ package com.idird.taxcalculator;
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.domain.product.ShoppingCart;
 import com.idird.taxcalculator.domain.receipt.Receipt;
-import com.idird.taxcalculator.service.ReceiptService;
-import com.idird.taxcalculator.service.ReceiptServiceImpl;
+import com.idird.taxcalculator.service.ReceiptGenerationService;
+import com.idird.taxcalculator.service.ReceiptGenerationServiceImpl;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategyImpl;
 import junit.framework.Test;
@@ -39,23 +39,18 @@ public class TaxCalculatorTest extends TestCase  {
     /**
      * Test
      */
-
-
     public void testTaxCalculatorOutput1() {
         BigDecimal localTaxMt = new BigDecimal("10");
         BigDecimal importTaxMt = new BigDecimal("5");
         int scale = 2;
         TaxCalculationStrategy taxCalculationStrategy = new TaxCalculationStrategyImpl(localTaxMt, importTaxMt, scale);
-        ReceiptService receiptService = new ReceiptServiceImpl(taxCalculationStrategy);
-        Collection<Product> p_products;
-        ShoppingCart shoppingCart;
-        Receipt receipt;
+        ReceiptGenerationService receiptGenerationService = new ReceiptGenerationServiceImpl(taxCalculationStrategy);
         Product book = new Product("Livre", Product.TYPE.BOOK.name(), 1, new BigDecimal("12.49"), false);
         Product cd = new Product("CD musical", Product.TYPE.OTHER.name(), 1, new BigDecimal("14.99"), false);
         Product barreDeChocolat = new Product("barre de chocolat", Product.TYPE.FOOD.name(), 1, new BigDecimal("0.85"), false);
-        p_products = asList(book, cd, barreDeChocolat);
-        shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptService.getReceipt(shoppingCart);
+        Collection<Product> p_products = asList(book, cd, barreDeChocolat);
+        ShoppingCart shoppingCart = new ShoppingCart(p_products);
+        Receipt receipt = receiptGenerationService.getReceipt(shoppingCart);
 
         assertTrue(receipt.getPurchases().size()==3);
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("29.83")) == 0);
@@ -67,7 +62,7 @@ public class TaxCalculatorTest extends TestCase  {
         BigDecimal importTaxMt = new BigDecimal("5");
         int scale = 2;
         TaxCalculationStrategy taxCalculationStrategy = new TaxCalculationStrategyImpl(localTaxMt, importTaxMt, scale);
-        ReceiptService receiptService = new ReceiptServiceImpl(taxCalculationStrategy);
+        ReceiptGenerationService receiptGenerationService = new ReceiptGenerationServiceImpl(taxCalculationStrategy);
         Collection<Product> p_products;
         ShoppingCart shoppingCart;
         Receipt receipt;
@@ -76,8 +71,8 @@ public class TaxCalculatorTest extends TestCase  {
         Product flaconDeParfum = new Product("Flacon de parfum", Product.TYPE.OTHER.name(), 1, new BigDecimal("47.50"), true);
         p_products = asList(boiteChocolatImportee, flaconDeParfum);
         shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptService.getReceipt(shoppingCart);
-
+        receipt = receiptGenerationService.getReceipt(shoppingCart);
+        System.out.println(receipt.toString());
         assertTrue(receipt.getPurchases().size() == 2);
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("65.15")) == 0);
         assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("7.65")) == 0);
@@ -88,7 +83,7 @@ public class TaxCalculatorTest extends TestCase  {
         BigDecimal importTaxMt = new BigDecimal("5");
         int scale = 2;
         TaxCalculationStrategy taxCalculationStrategy = new TaxCalculationStrategyImpl(localTaxMt, importTaxMt, scale);
-        ReceiptService receiptService = new ReceiptServiceImpl(taxCalculationStrategy);
+        ReceiptGenerationService receiptGenerationService = new ReceiptGenerationServiceImpl(taxCalculationStrategy);
         Collection<Product> p_products;
         ShoppingCart shoppingCart;
         Receipt receipt;
@@ -98,7 +93,7 @@ public class TaxCalculatorTest extends TestCase  {
         Product boiteDeChocolatImportee = new Product("boîte de chocolat importée", Product.TYPE.MEDICAL.name(),  1, new BigDecimal("11.25"), true);
         p_products = asList(flaconDeParfum2, flaconDeParfum3, boiteDePilulesContreLaMigraine, boiteDeChocolatImportee);
         shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptService.getReceipt(shoppingCart);
+        receipt = receiptGenerationService.getReceipt(shoppingCart);
 
         assertTrue(receipt.getPurchases().size() == 4);
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("74.68")) == 0);
