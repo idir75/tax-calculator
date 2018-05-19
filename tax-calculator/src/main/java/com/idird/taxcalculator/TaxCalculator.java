@@ -40,15 +40,20 @@ public class TaxCalculator
 
         System.out.println("\n Output 2");
         Product boiteChocolatImportee = new Product("Boîte de chocolats importée", Product.TYPE.FOOD.name(), 1, new BigDecimal("10.00"), true);
-        Product flaconDeParfum = new Product("Flacon de parfum", Product.TYPE.OTHER.name(), 1, new BigDecimal("47.50"), true);
+        Product flaconDeParfum = new Product("Flacon de parfum importé", Product.TYPE.OTHER.name(), 1, new BigDecimal("47.50"), true);
         p_products = asList(boiteChocolatImportee, flaconDeParfum);
         shoppingCart = new ShoppingCart(p_products);
         receipt = receiptService.getReceipt(shoppingCart);
         System.out.println(receipt.toString());
 
         System.out.println("\n Output 3");
-        p_products = asList();
+        Product flaconDeParfum2 = new Product("Flacon de parfum importé", Product.TYPE.OTHER.name(), 1, new BigDecimal("27.99"), true);
+        Product flaconDeParfum3 = new Product("Flacon de parfum", Product.TYPE.OTHER.name(), 1, new BigDecimal("18.99"), false);
+        Product boiteDePilulesContreLaMigraine = new Product("boîte de pilules contre la migraine", Product.TYPE.MEDICAL.name(),  1, new BigDecimal("9.75"), false);
+        Product boiteDeChocolatImportee = new Product("boîte de chocolat importée", Product.TYPE.MEDICAL.name(),  1, new BigDecimal("11.25"), true);
+        p_products = asList(flaconDeParfum2, flaconDeParfum3, boiteDePilulesContreLaMigraine, boiteDeChocolatImportee);
         shoppingCart = new ShoppingCart(p_products);
         receipt = receiptService.getReceipt(shoppingCart);
+        System.out.println(receipt.toString());
     }
 }

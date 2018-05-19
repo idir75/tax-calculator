@@ -26,6 +26,14 @@ public class Receipt {
         this.purchases = purchases;
     }
 
+    public BigDecimal getTaxAmout() {
+        return taxAmout;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
     @Override
     public String toString() {
         StringBuffer result = new StringBuffer();
