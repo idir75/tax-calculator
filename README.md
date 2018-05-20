@@ -39,7 +39,7 @@ Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Un
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
 Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
 
-Pour tout type de calcul, on applique un arrondi de 5 cent sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
+Pour tout type de calcul, on applique un arrondi de 5 cents sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
 
 Une combinaison des patterns **Strategy** et **Template method** est utilisée pour permettre de définir des stratégies de calcul différentes, tout en définissant un traitement commun à toutes ces stratégies.
 
