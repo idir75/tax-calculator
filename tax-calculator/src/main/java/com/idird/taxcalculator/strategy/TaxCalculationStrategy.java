@@ -1,8 +1,8 @@
 package com.idird.taxcalculator.strategy;
 
-import java.math.BigDecimal;
-
 import com.idird.taxcalculator.domain.product.Product;
+
+import java.math.BigDecimal;
 
 public interface TaxCalculationStrategy {
 

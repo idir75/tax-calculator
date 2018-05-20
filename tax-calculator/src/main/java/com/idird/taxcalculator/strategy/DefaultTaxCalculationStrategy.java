@@ -1,15 +1,15 @@
-package com.idird.taxcalculator.strategy2;
+package com.idird.taxcalculator.strategy;
 
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.rounding.DecimalRounder;
 
 import java.math.BigDecimal;
 
-public abstract class DefaultTaxCalculationStrategy2 implements TaxCalculationStrategy2 {
+public abstract class DefaultTaxCalculationStrategy implements TaxCalculationStrategy {
 
     private final DecimalRounder decimalRounder;
 
-    public DefaultTaxCalculationStrategy2(DecimalRounder p_decimalRounder) {
+    public DefaultTaxCalculationStrategy(DecimalRounder p_decimalRounder) {
         this.decimalRounder = p_decimalRounder;
     }
 

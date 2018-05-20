@@ -11,7 +11,7 @@ import com.idird.taxcalculator.domain.receipt.Purchase;
 import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
-import com.idird.taxcalculator.strategy2.TaxCalculationStrategy2;
+import com.idird.taxcalculator.strategy3.TaxCalculationStrategy3;
 
 public class ReceiptGeneratorImpl implements ReceiptGenerator {
 
@@ -34,7 +34,7 @@ public class ReceiptGeneratorImpl implements ReceiptGenerator {
         
         //TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
 
-        TaxCalculationStrategy2 taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy2(p_product);
+        TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
         BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
         BigDecimal totalAmount = p_product.getPrice().multiply(quantityAsBigDecimal).add(taxAmount);
         return new Purchase(p_product, taxAmount, totalAmount);
