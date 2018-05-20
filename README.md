@@ -99,6 +99,8 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  - Maven : 3.5.3
 
 ## Utilisation
- - Définir la variable JAVA_HOME dans le PATH.
- - Lancer le fichier `tax-calculation.bat` en ligne de commande.
+La classe de test est `TaxCalculator`.
+Pour exécuter le programme, il faut : 
+ - Ajouter la déclaration d'un JDK 1.8 dans la variable PATH
+ - Lancer le fichier `tax-calculation.bat` en ligne de commande
 
