@@ -46,7 +46,8 @@ Pour gérer les changements d'algorithme de calcul des taxes, on utilise le patt
 ### Implémentation
 L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` pour calculer la taxe du produit passé en paramètre.
 
-La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé. Cela permet de définir les traitements communs au niveau de la classe `DefaultTaxCalculationStrategy` et laisser ses sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) fournir une implémentation spécifique si nécessaire avec la méthode `calculateSpecificTaxAmount`.
+La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé. 
+Ce pattern permet de définir la structure de l'algorithme de calcul avec les traitements communs et les traitements spécifiques. Les traitements communs sont implémentés au niveau de la classe `DefaultTaxCalculationStrategy` et les traitements spécifiques sont laissés aux sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) qui se chargent d'implémenter la méthode `calculateSpecificTaxAmount`.
 
 Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cent quelque que soit la stratégie implémentée dans les sous-classes.
 
