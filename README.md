@@ -41,7 +41,9 @@ Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Un
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
 Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
 
-Pour gérer les changements d'algorithme de calcul des taxes, on utilise le pattern **Strategy** qui permet de définir stratégies de calcul selon les situations.
+Pour tout type de calcul, on applique un arrondi de 5 cent sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
+
+Une combinaison des patterns **Strategy** et **Template method** est utilisée pour permettre de définir des stratégies de calcul différentes, tout en définissant un traitement commun à toutes ces stratégies.
 
 ### Implémentation
 L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` pour calculer la taxe du produit passé en paramètre.
