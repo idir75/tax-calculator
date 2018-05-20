@@ -51,7 +51,7 @@ L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` p
 La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé. 
 Celui-ci permet de définir la structure de l'algorithme de calcul avec les traitements communs et les traitements spécifiques. Les traitements communs sont implémentés au niveau de la classe `DefaultTaxCalculationStrategy` et les traitements spécifiques sont laissés aux sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) qui se chargent d'implémenter la méthode `calculateSpecificTaxAmount`.
 
-Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cent quelque que soit la stratégie implémentée dans les sous-classes.
+Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cents quelque que soit la stratégie implémentée dans les sous-classes.
 
 Ainsi, s'il n'existe aucun traitement commun à toutes les stratégies de calcul, l'utilisation du pattern **Template method** n'est pas nécessaire.
 
@@ -65,10 +65,10 @@ La classe BigDecimal est utilisée pour manipuler les montants, car elle garanti
 ###`DecimalRounder`
 La classe `DecimalRounder` a les caractéristiques suivantes :
  - `scale` : nombre de decimales après la virgule. La valeur est de 2 par défaut.
- - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé il est de 5 cent.
- - `roundingMode` : le mode d'arrondi.
+ - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
+ - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
-La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cent dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
+La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cents dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
 Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `DecimalRounder` à l'instanciation.
 La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de DecimalRounder.
