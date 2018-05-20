@@ -53,7 +53,8 @@ Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi 
 Ainsi, s'il n'existe aucun traitement commun à toutes les stratégies de calcul, l'utilisation du pattern **Template method** n'est pas nécessaire.
 
 D'ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par d'autres classes sans hériter la classe abstraite `DefaultTaxCalculationStrategy` et définir des stratégies de calcul différentes.
- 
+
+La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
 
 ## Formattage des montants
 
