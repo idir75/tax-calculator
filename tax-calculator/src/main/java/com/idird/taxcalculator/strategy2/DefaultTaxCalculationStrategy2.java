@@ -9,7 +9,6 @@ public abstract class DefaultTaxCalculationStrategy2 implements TaxCalculationSt
 
     private final DecimalRounder decimalRounder;
 
-    //TODO ajouter un Constructeur par defaut pour le rounder
     public DefaultTaxCalculationStrategy2(DecimalRounder p_decimalRounder) {
         this.decimalRounder = p_decimalRounder;
     }
@@ -26,10 +25,7 @@ public abstract class DefaultTaxCalculationStrategy2 implements TaxCalculationSt
         }
 
         taxAmount = calculateSpecificTaxAmount(p_product);
-        if (decimalRounder != null) {
-            return decimalRounder.roundByDefault(taxAmount);
-        }
-        return taxAmount;
+        return decimalRounder.roundByDefault(taxAmount);
     }
 
     public abstract BigDecimal calculateSpecificTaxAmount(Product p_product);

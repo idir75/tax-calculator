@@ -11,10 +11,8 @@ public class DecimalRounder {
     private BigDecimal round;
     private RoundingMode roundingMode;
 
-
-
-
     public DecimalRounder() {
+    	this.scale = DefaultConstants.DEFAULT_SCALE;
     }
 
     public DecimalRounder(final int p_scale, final BigDecimal p_round, final RoundingMode p_roundingMode) {

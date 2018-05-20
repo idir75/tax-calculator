@@ -26,7 +26,9 @@ public class ImportTaxCalculationStrategyImpl2 extends DefaultTaxCalculationStra
     @Override
     public BigDecimal calculateSpecificTaxAmount(Product p_product) {
         BigDecimal taxAmount = BigDecimal.ZERO;
-        if (p_product.getType().equals(Product.Type.OTHER)) {
+        
+        Product.Type productType = p_product.getType();
+        if (!productType.equals(Product.Type.BOOK) && !productType.equals(Product.Type.FOOD) && !productType.equals(Product.Type.MEDICAL)) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(localTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
         if (p_product.isImported()) {

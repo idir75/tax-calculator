@@ -19,16 +19,13 @@ public class TaxCalculator
 {
     public static void main( String[] args )  {
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
-        Collection<Product> p_products;
-        ShoppingCart shoppingCart;
-        Receipt receipt;
 
         Product book = new Product("Livre", Product.Type.BOOK, 1, new BigDecimal("12.49"), false);
         Product cd = new Product("CD musical", Product.Type.OTHER, 1, new BigDecimal("14.99"), false);
         Product barreDeChocolat = new Product("barre de chocolat", Product.Type.FOOD, 1, new BigDecimal("0.85"), false);
-        p_products = asList(book, cd, barreDeChocolat);
-        shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptGenerator.getReceipt(shoppingCart);
+        Collection<Product> p_products = asList(book, cd, barreDeChocolat);
+        ShoppingCart shoppingCart = new ShoppingCart(p_products);
+        Receipt receipt = receiptGenerator.getReceipt(shoppingCart);
 
         System.out.println("Output 1");
         System.out.println(receipt.toString());

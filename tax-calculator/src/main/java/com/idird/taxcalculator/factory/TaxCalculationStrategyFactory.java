@@ -14,6 +14,10 @@ public class TaxCalculationStrategyFactory {
     private final LocalTaxCalculationStrategyImpl localTaxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
     private final ImportTaxCalculationStrategyImpl importTaxCalculationStrategy = new ImportTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
 
+    private final LocalTaxCalculationStrategyImpl2 localTaxCalculationStrategy2 = new LocalTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
+    private final ImportTaxCalculationStrategyImpl2 importTaxCalculationStrategy2 = new ImportTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
+
+    
     public TaxCalculationStrategy getTaxCalculationStrategy(Product product) {
         if (product.isImported()) {
             return importTaxCalculationStrategy;
@@ -23,8 +27,8 @@ public class TaxCalculationStrategyFactory {
 
     public TaxCalculationStrategy2 getTaxCalculationStrategy2(Product product) {
         if (product.isImported()) {
-            return new ImportTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
+            return importTaxCalculationStrategy2;
         }
-        return new LocalTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
+        return localTaxCalculationStrategy2;
     }
 }

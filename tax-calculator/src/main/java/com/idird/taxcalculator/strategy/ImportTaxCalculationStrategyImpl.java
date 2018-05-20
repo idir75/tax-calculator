@@ -36,15 +36,13 @@ public class ImportTaxCalculationStrategyImpl implements TaxCalculationStrategy 
             return taxAmount;
         }
 
-        if (p_product.getType().equals(Product.Type.OTHER)) {
+        Product.Type productType = p_product.getType();
+        if (!productType.equals(Product.Type.BOOK) && !productType.equals(Product.Type.FOOD) && !productType.equals(Product.Type.MEDICAL)) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(localTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
         if (p_product.isImported()) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(importTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
-        if (decimalRounder != null) {
-            return decimalRounder.roundByDefault(taxAmount);
-        }
-        return taxAmount;
+        return decimalRounder.roundByDefault(taxAmount);
     }
 }

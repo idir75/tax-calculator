@@ -51,6 +51,7 @@ public class TaxCalculatorTest extends TestCase {
         Receipt receipt = receiptGenerator.getReceipt(shoppingCart);
 
         assertTrue(receipt.getPurchases().size()==3);
+        
         List<Purchase> purchases = new ArrayList<>(receipt.getPurchases());
 
         assertTrue(purchases.get(0).getTotalAmount().compareTo(new BigDecimal("12.49")) == 0);
@@ -72,7 +73,7 @@ public class TaxCalculatorTest extends TestCase {
         p_products = asList(boiteChocolatImportee, flaconDeParfum);
         shoppingCart = new ShoppingCart(p_products);
         receipt = receiptGenerator.getReceipt(shoppingCart);
-        System.out.println(receipt.toString());
+        
         assertTrue(receipt.getPurchases().size() == 2);
 
         List<Purchase> purchases = new ArrayList<>(receipt.getPurchases());
