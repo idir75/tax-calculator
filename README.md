@@ -2,11 +2,10 @@
 
 ## Domaine
 
-Pour modéliser le besoin de l'énoncé les classes ci-dessous ont été créées.
+Pour modéliser le besoin de l'énoncé, les classes ci-dessous ont été créées.
 
 ### `Product`
-`Product` représente un produit. 
-Un produit a les caractéristiques suivantes :
+`Product` représente un produit. Celui-ci a les caractéristiques suivantes :
  - **`name`** : nom du produit
  - **`type`** : type du produit. La liste des types possibles est définie dans l'énumation `Type`. Ces valeurs sont : `BOOK` (pour les livres), `FOOD` (pour la nourriture), `MEDICAL` (pour les médicaments) et `OTHER` (pour tout autre produit).
  - **`quantity`** : la quantity des produits
@@ -14,19 +13,18 @@ Un produit a les caractéristiques suivantes :
  - **`imported`** : indique si le produit est importé ou pas
 
 ### `ShoppingBag`
-Un panier d'achat contient une liste des produits.
+`ShoppingBag` représente un panier d'achat. Celui-ci contient une liste des produits.
  - **`products`** : liste des produits qui composent le panier d'achat
  
 ### `Purchase`
-`Purchase` représente un achat. 
-Un achat a les caractéristiques suivantes :
+`Purchase` représente un achat. Celui-ci a les caractéristiques suivantes :
 - **`product`** : le produit acheté
 - **`taxAmount`** : le montant des taxes appliquées pour l'achat du produit
 - **`totalAmount`** : montant du prix d'achat (taxes comprises) 
 
 ### `Invoice`
-`Invoice` représente un ticket de caisse. 
-Il liste les achats effectués, le montant total des taxes et le montant total de la facture.
+`Invoice` représente la facture. 
+Celle-ci contient liste les achats effectués, le montant total des taxes et le montant total à payer.
  - **`purchases`** : liste des achats
  - **`taxAmout`** : montant total des taxes pour tous les achats
  - **`totalAmount`** : montant total des achats (taxes incluses)
@@ -41,7 +39,7 @@ Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Un
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
 Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
 
-Pour tout type de calcul, on applique un arrondi de 5 cent sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
+Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
 
 Une combinaison des patterns **Strategy** et **Template method** est utilisée pour permettre de définir des stratégies de calcul différentes, tout en définissant un traitement commun à toutes ces stratégies.
 
@@ -49,9 +47,9 @@ Une combinaison des patterns **Strategy** et **Template method** est utilisée p
 L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` pour calculer la taxe du produit passé en paramètre.
 
 La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé. 
-Celui-ci permet de définir la structure de l'algorithme de calcul avec les traitements communs et les traitements spécifiques. Les traitements communs sont implémentés au niveau de la classe `DefaultTaxCalculationStrategy` et les traitements spécifiques sont laissés aux sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) qui se chargent d'implémenter la méthode `calculateSpecificTaxAmount`.
+Celui-ci permet de définir la structure de l'algorithme de calcul avec les traitements communs et les traitements spécifiques. Les traitements communs sont implémentés au niveau de la classe `DefaultTaxCalculationStrategy` (on évite ainsi de dupliquer le code dans les sous-classes), et les traitements spécifiques sont laissés aux sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) qui se chargent d'implémenter la méthode `calculateSpecificTaxAmount`.
 
-Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cents quelque que soit la stratégie implémentée dans les sous-classes.
+Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cents supérieurs quelque que soit la stratégie implémentée dans les sous-classes.
 
 Ainsi, s'il n'existe aucun traitement commun à toutes les stratégies de calcul, l'utilisation du pattern **Template method** n'est pas nécessaire.
 
@@ -59,8 +57,8 @@ Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par 
 
 La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
 
-## Génération du ticket de caisse
-La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée un ticket de caisse (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
+## Génération de la facture
+La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
 
 La méthode calcule aussi le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
 
@@ -75,7 +73,7 @@ La classe `DecimalRounder` a les caractéristiques suivantes :
  - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
-La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cents dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
+La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
 Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `DecimalRounder` à l'instanciation.
 La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de DecimalRounder.
