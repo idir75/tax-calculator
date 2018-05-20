@@ -87,7 +87,7 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
  ```
  
- - Etape 3 : multiplier le ratio par le taux d'arrondi (étape 1)
+ - Etape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
  
 ## Axes d'amélioration
 
