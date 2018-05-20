@@ -1,4 +1,4 @@
-package com.idird.taxcalculator.domain.receipt;
+package com.idird.taxcalculator.domain.invoice;
 
 import com.idird.taxcalculator.domain.product.Product;
 

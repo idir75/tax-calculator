@@ -1,16 +1,16 @@
-package com.idird.taxcalculator.domain.receipt;
+package com.idird.taxcalculator.domain.invoice;
 
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class Receipt {
+public class Invoice {
 
     private Collection<Purchase> purchases;
     private BigDecimal taxAmout;
     private BigDecimal totalAmount;
 
-    public Receipt(Collection<Purchase> p_purchases, BigDecimal p_taxAmout, BigDecimal p_totalAmount) {
+    public Invoice(Collection<Purchase> p_purchases, BigDecimal p_taxAmout, BigDecimal p_totalAmount) {
         this.purchases = p_purchases;
         this.taxAmout = p_taxAmout;
         this.totalAmount = p_totalAmount;

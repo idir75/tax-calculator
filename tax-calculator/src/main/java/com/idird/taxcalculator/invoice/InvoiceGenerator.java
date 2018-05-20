@@ -1,9 +1,9 @@
 package com.idird.taxcalculator.invoice;
 
 import com.idird.taxcalculator.domain.product.ShoppingBag;
-import com.idird.taxcalculator.domain.receipt.Receipt;
+import com.idird.taxcalculator.domain.invoice.Invoice;
 
 public interface InvoiceGenerator {
 
-    Receipt getReceipt(ShoppingBag p_shoppingCart);
+    Invoice getInvoice(ShoppingBag p_shoppingBag);
 }
