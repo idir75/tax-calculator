@@ -18,14 +18,14 @@ Un panier d'achat contient une liste des produits.
  - **`products`** : liste des produits qui composent le panier d'achat
  
 ### `Purchase`
-Purchase représente un achat. 
+`Purchase` représente un achat. 
 Un achat a les caractéristiques suivantes :
 - **`product`** : le produit acheté
 - **`taxAmount`** : le montant des taxes appliquées pour l'achat du produit
 - **`totalAmount`** : montant du prix d'achat (taxes comprises) 
 
-### `Receipt`
-Receipt représente un ticket de caisse. 
+### `Invoice`
+`Invoice` représente un ticket de caisse. 
 Il liste les achats effectués, le montant total des taxes et le montant total de la facture.
  - **`purchases`** : liste des achats
  - **`taxAmout`** : montant total des taxes pour tous les achats
@@ -60,7 +60,7 @@ Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par 
 La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
 
 ## Génération du ticket de caisse
-La classe `ReceiptGeneratorImpl` qui implémente l'interface `ReceiptGenerator` crée un ticket de caisse (`Receipt`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
+La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée un ticket de caisse (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
 
 La méthode calcule aussi le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
 
