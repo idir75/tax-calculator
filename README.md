@@ -40,7 +40,8 @@ La classe `Purchase` permet de modéliser le calcul des taxes sur les produits. 
 Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Une taxe spéciale est appliquée sur les produits importés.
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
 Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
-Pour ces raisons, il est nécessaire d'utiliser le pattern **Strategy** pour définir des stratégies de calcul selon les situations.
+
+Pour gérer les changements d'algorithme de calcul des taxes, on utilise le pattern **Strategy** qui permet de définir stratégies de calcul selon les situations.
 
 ### Implémentation
 
