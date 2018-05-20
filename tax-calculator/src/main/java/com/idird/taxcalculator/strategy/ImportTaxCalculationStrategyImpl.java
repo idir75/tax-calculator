@@ -1,23 +1,16 @@
 package com.idird.taxcalculator.strategy;
 
+import java.math.BigDecimal;
+
 import com.idird.taxcalculator.constants.DefaultConstants;
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.rounding.DecimalRounder;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class ImportTaxCalculationStrategyImpl implements TaxCalculationStrategy {
 
     private final BigDecimal localTaxMt;
     private final BigDecimal importTaxMt;
     private final DecimalRounder decimalRounder;
-
-    public ImportTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt) {
-        this.localTaxMt = p_localTaxMt;
-        this.importTaxMt = p_importTaxMt;
-        this.decimalRounder = new DecimalRounder();
-    }
 
     public ImportTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt, DecimalRounder p_decimalRounder) {
         this.localTaxMt = p_localTaxMt;
@@ -43,6 +36,6 @@ public class ImportTaxCalculationStrategyImpl implements TaxCalculationStrategy 
         if (p_product.isImported()) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(importTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
-        return decimalRounder.roundByDefault(taxAmount);
+        return decimalRounder.round(taxAmount);
     }
 }

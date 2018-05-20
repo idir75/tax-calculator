@@ -1,21 +1,15 @@
 package com.idird.taxcalculator.strategy2;
 
+import java.math.BigDecimal;
+
 import com.idird.taxcalculator.constants.DefaultConstants;
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.rounding.DecimalRounder;
-
-import java.math.BigDecimal;
 
 public class ImportTaxCalculationStrategyImpl2 extends DefaultTaxCalculationStrategy2 {
 
     private final BigDecimal localTaxMt;
     private final BigDecimal importTaxMt;
-
-    public ImportTaxCalculationStrategyImpl2(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt) {
-        super(new DecimalRounder());
-        this.localTaxMt = p_localTaxMt;
-        this.importTaxMt = p_importTaxMt;
-    }
 
     public ImportTaxCalculationStrategyImpl2(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt, DecimalRounder p_decimalRounder) {
         super(p_decimalRounder);

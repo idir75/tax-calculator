@@ -25,7 +25,10 @@ public abstract class DefaultTaxCalculationStrategy2 implements TaxCalculationSt
         }
 
         taxAmount = calculateSpecificTaxAmount(p_product);
-        return decimalRounder.roundByDefault(taxAmount);
+        if (decimalRounder == null) {
+        	return taxAmount;
+        }
+        return decimalRounder.round(taxAmount);
     }
 
     public abstract BigDecimal calculateSpecificTaxAmount(Product p_product);

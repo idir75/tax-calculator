@@ -10,11 +10,6 @@ public class LocalTaxCalculationStrategyImpl implements TaxCalculationStrategy {
     private final BigDecimal localTaxMt;
     private final DecimalRounder decimalRounder;
 
-    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt) {
-        this.localTaxMt = p_localTaxMt;
-        this.decimalRounder = new DecimalRounder();
-    }
-
     public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, DecimalRounder p_decimalRounder) {
         this.localTaxMt = p_localTaxMt;
         this.decimalRounder = p_decimalRounder;
@@ -35,7 +30,7 @@ public class LocalTaxCalculationStrategyImpl implements TaxCalculationStrategy {
         if (!productType.equals(Product.Type.BOOK) && !productType.equals(Product.Type.FOOD) && !productType.equals(Product.Type.MEDICAL)) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(localTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
-        return decimalRounder.roundByDefault(taxAmount);
+        return decimalRounder.round(taxAmount);
     }
 
     public DecimalRounder getDecimalRounder() {
