@@ -55,7 +55,7 @@ Ainsi, s'il n'existe aucun traitement commun à toutes les stratégies de calcul
 
 Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par d'autres classes sans hériter de `DefaultTaxCalculationStrategy` pour pour définir d'autres stratégies ne suivant pas l'algorithme défini dans celle-ci.
 
-La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
+La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méthode `getTaxCalculationStrategy`.
 
 ## Génération de la facture
 La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
@@ -65,11 +65,11 @@ La méthode calcule aussi le montant total des taxes sur tous les achats ainsi q
 La méthode interne `getPurchase` crée un achat à partir du produit passé en paramètre. Elle fait appel à la factory `TaxCalculationStrategyFactory` pour savoir quelle stratégie appliquer pour la calcul des taxes.
 
 ## Gestion des montants
-La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une méilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
+La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une meilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
 
-###`DecimalRounder`
+### `DecimalRounder`
 La classe `DecimalRounder` a les caractéristiques suivantes :
- - `scale` : nombre de decimales après la virgule. La valeur est de 2 par défaut.
+ - `scale` : nombre de décimales après la virgule. La valeur est de 2 par défaut.
  - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
@@ -82,17 +82,17 @@ En passant des instances de `DecimalRounder` au constructeur d'une stratégie, i
 
 ### Algorithme de calcul de l'arrondi
 Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
- - Etape 1 : calculer le taux d'arrondi en centime : 5 cents correspond donc à 5%, 7 cents correspond à 7%, etc.
+ - Étape 1 : calculer le taux d'arrondi en centime : 5 cents correspond donc à 5%, 7 cents correspond à 7%, etc.
  ```
  BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
  ```
  
- - Etape 2 : calculer le ratio du montant à arrondir par rappaort au taux d'arrondi et l'arrondir. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
+ - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux d'arrondi et l'arrondir. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
  ```
  BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
  ```
  
- - Etape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
+ - Étape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
 
 ## Technologies
  - Java : 1.8.0_151
