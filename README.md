@@ -94,7 +94,10 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  
  - Etape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
 
-## Axes d'amélioration
+## Technologies
+ - Java : 1.8.0_151
+ - Maven : 3.5.3
 
-## Conclusion
+## Utilisation
+Lancer le fichier `tax-calculation.bat` en ligne de commande.
 
