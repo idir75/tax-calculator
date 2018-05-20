@@ -23,7 +23,7 @@ Pour modéliser le besoin de l'énoncé, les classes ci-dessous ont été créé
 - **`totalAmount`** : montant du prix d'achat (taxes comprises) 
 
 ### `Invoice`
-`Invoice` représente la facture des achats. 
+`Invoice` représente la facture. 
 Celle-ci contient liste les achats effectués, le montant total des taxes et le montant total à payer.
  - **`purchases`** : liste des achats
  - **`taxAmout`** : montant total des taxes pour tous les achats
