@@ -1,5 +1,6 @@
 package com.idird.taxcalculator;
 
+import com.idird.taxcalculator.constants.DefaultConstants;
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.domain.product.ShoppingCart;
 import com.idird.taxcalculator.domain.receipt.Receipt;
@@ -39,10 +40,7 @@ public class TaxCalculatorTest extends TestCase {
      * Test
      */
     public void testTaxCalculatorOutput1() {
-        BigDecimal localTaxMt = new BigDecimal("10");
-        BigDecimal importTaxMt = new BigDecimal("5");
-        int scale = 2;
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(localTaxMt, importTaxMt);
+        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Product book = new Product("Livre", Product.Type.BOOK, 1, new BigDecimal("12.49"), false);
         Product cd = new Product("CD musical", Product.Type.OTHER, 1, new BigDecimal("14.99"), false);
@@ -57,10 +55,7 @@ public class TaxCalculatorTest extends TestCase {
     }
 
     public void testTaxCalculatorOutput2() {
-        BigDecimal localTaxMt = new BigDecimal("10");
-        BigDecimal importTaxMt = new BigDecimal("5");
-        int scale = 2;
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(localTaxMt, importTaxMt);
+        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Collection<Product> p_products;
         ShoppingCart shoppingCart;
@@ -78,10 +73,7 @@ public class TaxCalculatorTest extends TestCase {
     }
 
     public void testTaxCalculatorOutput3() {
-        BigDecimal localTaxMt = new BigDecimal("10");
-        BigDecimal importTaxMt = new BigDecimal("5");
-        int scale = 2;
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(localTaxMt, importTaxMt);
+        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Collection<Product> p_products;
         ShoppingCart shoppingCart;

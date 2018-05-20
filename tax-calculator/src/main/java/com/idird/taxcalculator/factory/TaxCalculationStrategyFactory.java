@@ -8,7 +8,7 @@ import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
 
 public class TaxCalculationStrategyFactory {
 
-    private final LocalTaxCalculationStrategyImpl localTaxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
+    private final LocalTaxCalculationStrategyImpl localTaxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
     private final ImportTaxCalculationStrategyImpl importTaxCalculationStrategy = new ImportTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
 
     public TaxCalculationStrategy getTaxCalculationStrategy(Product product) {

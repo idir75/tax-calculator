@@ -8,18 +8,15 @@ import java.math.BigDecimal;
 public class LocalTaxCalculationStrategyImpl implements TaxCalculationStrategy {
 
     private final BigDecimal localTaxMt;
-    private final BigDecimal importTaxMt;
     private final DecimalRounder decimalRounder;
 
-    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt) {
+    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt) {
         this.localTaxMt = p_localTaxMt;
-        this.importTaxMt = p_importTaxMt;
         this.decimalRounder = new DecimalRounder();
     }
 
-    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, BigDecimal p_importTaxMt, DecimalRounder p_decimalRounder) {
+    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, DecimalRounder p_decimalRounder) {
         this.localTaxMt = p_localTaxMt;
-        this.importTaxMt = p_importTaxMt;
         this.decimalRounder = p_decimalRounder;
     }
 
@@ -37,9 +34,6 @@ public class LocalTaxCalculationStrategyImpl implements TaxCalculationStrategy {
         if (p_product.getType().equals(Product.Type.OTHER)) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(localTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
-        /*if (p_product.isImported()) {
-            taxAmount = taxAmount.add(p_product.getPrice().multiply(importTaxMt).divide(DefaultConstants.ONE_HUNDRED));
-        }*/
         if (decimalRounder != null) {
             return decimalRounder.roundByDefault(taxAmount);
         }
@@ -52,9 +46,5 @@ public class LocalTaxCalculationStrategyImpl implements TaxCalculationStrategy {
 
     public BigDecimal getLocalTaxMt() {
         return localTaxMt;
-    }
-
-    public BigDecimal getImportTaxMt() {
-        return importTaxMt;
     }
 }

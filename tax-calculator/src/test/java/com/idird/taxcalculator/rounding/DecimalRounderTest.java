@@ -19,10 +19,10 @@ public class DecimalRounderTest extends TestCase {
     public void testRound() {
         DecimalRounder rounder = new DecimalRounder();
         BigDecimal defaultIncrement = new BigDecimal("5");
-        assertEquals(new BigDecimal("1.05"), rounder.round(new BigDecimal("1.03"), defaultIncrement, RoundingMode.UP));
-        assertEquals(new BigDecimal("1.10"), rounder.round(new BigDecimal("1.051"), defaultIncrement, RoundingMode.UP));
+        assertEquals(new BigDecimal("3.05"), rounder.round(new BigDecimal("3.03"), defaultIncrement, RoundingMode.UP));
+        assertEquals(new BigDecimal("1.10"), rounder.round(new BigDecimal("1.053"), defaultIncrement, RoundingMode.UP));
         assertEquals(new BigDecimal("1.05"), rounder.round(new BigDecimal("1.05"), defaultIncrement, RoundingMode.UP));
-        assertEquals(new BigDecimal("1.95"), rounder.round(new BigDecimal("1.900001"), defaultIncrement, RoundingMode.UP));
+        assertEquals(new BigDecimal("2.95"), rounder.round(new BigDecimal("2.900121"), defaultIncrement, RoundingMode.UP));
 
         assertEquals(new BigDecimal("1.00"), rounder.round(new BigDecimal("0.99"), defaultIncrement, RoundingMode.UP));
         assertEquals(new BigDecimal("1.00"), rounder.round(new BigDecimal("1.00"), defaultIncrement, RoundingMode.UP));
