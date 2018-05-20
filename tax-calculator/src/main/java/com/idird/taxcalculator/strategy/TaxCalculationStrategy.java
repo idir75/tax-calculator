@@ -3,7 +3,9 @@ package com.idird.taxcalculator.strategy;
 import com.idird.taxcalculator.domain.product.Product;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public interface TaxCalculationStrategy {
-    BigDecimal calculateTaxAmout(Product p_product);
+
+    BigDecimal calculateTaxAmount(Product p_product);
 }

@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 
 public class Product {
 
-    public enum TYPE {
+    public enum Type {
         BOOK, FOOD, MEDICAL, OTHER;
     }
 
     private String name;
 
-    private String type;
+    private Type type;
 
     private int quantity;
 
@@ -18,7 +18,7 @@ public class Product {
 
     private boolean imported;
 
-    public Product(String p_name, String p_type, int p_quantity, BigDecimal p_price, boolean p_imported) {
+    public Product(String p_name, Type p_type, int p_quantity, BigDecimal p_price, boolean p_imported) {
         this.name = p_name;
         this.type = p_type;
         this.quantity = p_quantity;
@@ -34,11 +34,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

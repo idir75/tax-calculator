@@ -1,21 +1,21 @@
-package com.idird.taxcalculator.service;
+package com.idird.taxcalculator.generator;
 
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.domain.product.ShoppingCart;
 import com.idird.taxcalculator.domain.receipt.Purchase;
 import com.idird.taxcalculator.domain.receipt.Receipt;
+import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
+import com.idird.taxcalculator.strategy.LocalTaxCalculationStrategyImpl;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class ReceiptGenerationServiceImpl implements ReceiptGenerationService {
+public class ReceiptGeneratorImpl implements ReceiptGenerator {
 
-    private final TaxCalculationStrategy taxCalculationStrategy;
-
-    public ReceiptGenerationServiceImpl(TaxCalculationStrategy p_taxCalculationStrategy) {
-        this.taxCalculationStrategy = p_taxCalculationStrategy;
+    public ReceiptGeneratorImpl() {
     }
 
     @Override
@@ -29,7 +29,9 @@ public class ReceiptGenerationServiceImpl implements ReceiptGenerationService {
     private Purchase getPurchase(Product p_product) {
         //TODO mauvais
         BigDecimal quantityAsBigDecimal = new BigDecimal(p_product.getQuantity());
-        BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmout(p_product).multiply(quantityAsBigDecimal);
+        TaxCalculationStrategyFactory taxCalculationStrategyFactory = new TaxCalculationStrategyFactory();
+        TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
+        BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
         BigDecimal totalAmount = p_product.getPrice().multiply(quantityAsBigDecimal).add(taxAmount);
         return new Purchase(p_product, taxAmount, totalAmount);
     }
