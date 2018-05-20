@@ -30,8 +30,22 @@ Il liste les achats effectués, le montant total des taxes et le montant total d
  - **purchases** : liste des achats
  - **taxAmout** : montant total des taxes pour tous les achats
  - **totalAmount** : montant total des achats (taxes incluses)
- 
+
+## Choix de définition du domaine 
+La taxe ne fait pas partie du produit, car celle-ci peut changer et n'est donc pas une propriété définissant un produit.
+
+La classe Purchase permet de modéliser le calcul des taxes sur les produits. Elle permet aussi de calculer le prix total en prenant en compte les taxes appliquées.
+
 ## Calcul des taxes
 
+### Principe
+
+### Choix
+
+
 ## Formattage des montants
+
+## Axes d'amélioration
+
+## Conclusion
 
