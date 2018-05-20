@@ -59,6 +59,13 @@ Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par 
 
 La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
 
+## Génération du ticket de caisse
+La classe `ReceiptGeneratorImpl` qui implémente l'interface `ReceiptGenerator` crée un ticket de caisse (`Receipt`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
+
+La méthode calcule aussi le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
+
+La méthode interne `getPurchase` crée un achat à partir du produit passé en paramètre. Elle fait appel à la factory `TaxCalculationStrategyFactory` pour savoir quelle stratégie appliquer pour la calcul des taxes.
+
 ## Gestion des montants
 La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une méilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
 
@@ -88,7 +95,7 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  ```
  
  - Etape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
- 
+
 ## Axes d'amélioration
 
 ## Conclusion
