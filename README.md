@@ -27,9 +27,9 @@ Un achat a les caractéristiques suivantes :
 ### Receipt
 Receipt représente un ticket de caisse. 
 Il liste les achats effectués, le montant total des taxes et le montant total de la facture.
- - purchases : liste des achats
- - taxAmout : montant total des taxes pour tous les achats
- - totalAmount : montant total des achats (taxes incluses)
+ - **purchases** : liste des achats
+ - **taxAmout** : montant total des taxes pour tous les achats
+ - **totalAmount** : montant total des achats (taxes incluses)
  
 ## Calcul des taxes
 
