@@ -95,7 +95,7 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  - Étape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
 
 ## Technologies
- - Java : 1.8.0_151
+ - JDK : 1.8.0_151
  - Maven : 3.5.3
 
 ## Utilisation
