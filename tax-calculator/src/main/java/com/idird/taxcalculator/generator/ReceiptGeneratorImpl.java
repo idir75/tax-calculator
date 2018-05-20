@@ -7,6 +7,7 @@ import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
 import com.idird.taxcalculator.strategy.LocalTaxCalculationStrategyImpl;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
+import com.idird.taxcalculator.strategy2.TaxCalculationStrategy2;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,8 +31,10 @@ public class ReceiptGeneratorImpl implements ReceiptGenerator {
         //TODO mauvais
         BigDecimal quantityAsBigDecimal = new BigDecimal(p_product.getQuantity());
         TaxCalculationStrategyFactory taxCalculationStrategyFactory = new TaxCalculationStrategyFactory();
-        TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
-        BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
+        //TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
+
+        TaxCalculationStrategy2 taxCalculationStrategy2  = taxCalculationStrategyFactory.getTaxCalculationStrategy2(p_product);
+        BigDecimal taxAmount = taxCalculationStrategy2.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
         BigDecimal totalAmount = p_product.getPrice().multiply(quantityAsBigDecimal).add(taxAmount);
         return new Purchase(p_product, taxAmount, totalAmount);
     }

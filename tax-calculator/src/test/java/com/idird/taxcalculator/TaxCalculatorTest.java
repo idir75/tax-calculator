@@ -40,7 +40,6 @@ public class TaxCalculatorTest extends TestCase {
      * Test
      */
     public void testTaxCalculatorOutput1() {
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Product book = new Product("Livre", Product.Type.BOOK, 1, new BigDecimal("12.49"), false);
         Product cd = new Product("CD musical", Product.Type.OTHER, 1, new BigDecimal("14.99"), false);
@@ -55,7 +54,6 @@ public class TaxCalculatorTest extends TestCase {
     }
 
     public void testTaxCalculatorOutput2() {
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Collection<Product> p_products;
         ShoppingCart shoppingCart;
@@ -73,7 +71,6 @@ public class TaxCalculatorTest extends TestCase {
     }
 
     public void testTaxCalculatorOutput3() {
-        LocalTaxCalculationStrategyImpl taxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Collection<Product> p_products;
         ShoppingCart shoppingCart;

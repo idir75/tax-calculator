@@ -5,6 +5,9 @@ import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.strategy.ImportTaxCalculationStrategyImpl;
 import com.idird.taxcalculator.strategy.LocalTaxCalculationStrategyImpl;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
+import com.idird.taxcalculator.strategy2.ImportTaxCalculationStrategyImpl2;
+import com.idird.taxcalculator.strategy2.LocalTaxCalculationStrategyImpl2;
+import com.idird.taxcalculator.strategy2.TaxCalculationStrategy2;
 
 public class TaxCalculationStrategyFactory {
 
@@ -16,5 +19,12 @@ public class TaxCalculationStrategyFactory {
             return importTaxCalculationStrategy;
         }
         return localTaxCalculationStrategy;
+    }
+
+    public TaxCalculationStrategy2 getTaxCalculationStrategy2(Product product) {
+        if (product.isImported()) {
+            return new ImportTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE, DefaultConstants.DEFAULT_IMPORT_TAX_RATE);
+        }
+        return new LocalTaxCalculationStrategyImpl2(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
     }
 }

@@ -19,7 +19,6 @@ import static java.util.Arrays.asList;
 public class TaxCalculator
 {
     public static void main( String[] args )  {
-        LocalTaxCalculationStrategyImpl defaultTaxCalculationStrategy = new LocalTaxCalculationStrategyImpl(DefaultConstants.DEFAULT_LOCAL_TAX_RATE);
         ReceiptGenerator receiptGenerator = new ReceiptGeneratorImpl();
         Collection<Product> p_products;
         ShoppingCart shoppingCart;
