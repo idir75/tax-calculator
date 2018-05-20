@@ -32,15 +32,17 @@ Il liste les achats effectués, le montant total des taxes et le montant total d
  - **`totalAmount`** : montant total des achats (taxes incluses)
 
 ## Choix de définition du domaine 
-La taxe ne fait pas partie du produit, car celle-ci peut changer et n'est donc pas une propriété définissant un produit.
-
-La classe `Purchase` permet de modéliser le calcul des taxes sur les produits. Elle permet aussi de calculer le prix total en prenant en compte les taxes appliquées.
+La taxe n'est pas une propriété inhérente au produit, elle ne doit donc pas être définie dans la classe `Product`.
+La classe `Purchase` permet de modéliser le calcul des taxes sur les produits. Elle permet aussi de calculer le prix total en tenant compte des taxes appliquées.
 
 ## Calcul des taxes
-
 ### Principe
+Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Une taxe spéciale est appliquée sur les produits importés.
+Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
+Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
+Pour ces raisons, il est nécessaire d'utiliser le pattern **Strategy** pour définir des stratégies de calcul selon les situations.
 
-### Choix
+### Implémentation
 
 
 ## Formattage des montants
