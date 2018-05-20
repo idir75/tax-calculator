@@ -41,28 +41,28 @@ Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de 
 
 Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
 
-Une combinaison des patterns **Strategy** et **Template method** est utilisée pour permettre de définir des stratégies de calcul différentes, tout en définissant un traitement commun à toutes ces stratégies.
+Le pattern **Strategy** est associé au pattern **Template method** pour permettre de définir des stratégies de calcul différentes tout en permettant d'avoir un traitement commun à toutes ces stratégies.
 
 ### Implémentation
 L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` pour calculer la taxe du produit passé en paramètre.
 
-La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé. 
+La classe abstraite `DefaultTaxCalculationStrategy` implémente l'interface `TaxCalculationStrategy`. Dans l'implémentation de la méthode `calculateTaxAmount`, le pattern **Template method** est utilisé.
 Celui-ci permet de définir la structure de l'algorithme de calcul avec les traitements communs et les traitements spécifiques. Les traitements communs sont implémentés au niveau de la classe `DefaultTaxCalculationStrategy` (on évite ainsi de dupliquer le code dans les sous-classes), et les traitements spécifiques sont laissés aux sous-classes (`LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) qui se chargent d'implémenter la méthode `calculateSpecificTaxAmount`.
 
-Avec le pattern **Template method**, l'algorithme permet d'appliquer un arrondi de 5 cents supérieurs quelque que soit la stratégie implémentée dans les sous-classes.
+Ainsi, comme l'opération d'arrondi de 5 cents supérieurs est commune à toutes les stratégies, elle est définie au niveau de la classe abstraite `DefaultTaxCalculationStrategy`.
 
-Ainsi, s'il n'existe aucun traitement commun à toutes les stratégies de calcul, l'utilisation du pattern **Template method** n'est pas nécessaire.
+Sans ce traietment commun, l'utilisation du pattern **Template method** n'est pas nécessaire.
 
-Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par d'autres classes sans hériter de `DefaultTaxCalculationStrategy` pour pour définir d'autres stratégies ne suivant pas l'algorithme défini dans celle-ci.
+Par ailleurs, on peut définir d'autres classes stratégies qui implémentent l'interface `TaxCalculationStrategy` mais n'héritent pas de la classe `DefaultTaxCalculationStrategy`, et définir ainsi un algorithme de calcul complètement différent.
 
-La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méthode `getTaxCalculationStrategy`.
+La classe `TaxCalculationStrategyFactory` utilise le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite dans la méthode `getTaxCalculationStrategy`.
 
 ## Génération de la facture
 La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
 
-La méthode calcule aussi le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
+La méthode calcule également le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
 
-La méthode interne `getPurchase` crée un achat à partir du produit passé en paramètre. Elle fait appel à la factory `TaxCalculationStrategyFactory` pour savoir quelle stratégie appliquer pour la calcul des taxes.
+La méthode interne `getPurchase` crée un achat à partir du produit passé en paramètre. Elle fait appel à la factory `TaxCalculationStrategyFactory` pour déterminer la stratégie à appliquer pour la calcul.
 
 ## Gestion des montants
 La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une meilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
@@ -73,21 +73,21 @@ La classe `DecimalRounder` a les caractéristiques suivantes :
  - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
-La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
+La classe `DecimalRounder` implémente le calcul de l'arrondi de `roundingRate` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
 Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `DecimalRounder` à l'instanciation.
-La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de DecimalRounder.
+La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de `DecimalRounder`.
 
-En passant des instances de `DecimalRounder` au constructeur d'une stratégie, il est possible d'utiliser différentes instances de DecimalRounder (avec des valeurs différentes selon les besoins). Il est aussi possible d'utiliser l'injection de dépendance associer une instance d'un `DecimalRounder` à une instance d'une stratégie.
+Il est donc possible de modifier la logique d'arrondi dans la classe `DecimalRounder` sans impacter le calcul des taxes.
 
 ### Algorithme de calcul de l'arrondi
 Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
- - Étape 1 : calculer le taux d'arrondi en centime : 5 cents correspond donc à 5%, 7 cents correspond à 7%, etc.
+ - Étape 1 : calculer le taux d'arrondi en centimes : 5 cents correspond à 5%, 7 cents correspond à 7%, etc.
  ```
  BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
  ```
  
- - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux d'arrondi et l'arrondir. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
+ - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux et l'arrondir le résultat obtenu. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
  ```
  BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
  ```
