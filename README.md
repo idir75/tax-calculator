@@ -5,8 +5,7 @@
 Pour modéliser le besoin de l'énoncé, les classes ci-dessous ont été créées.
 
 ### `Product`
-`Product` représente un produit. 
-Un produit a les caractéristiques suivantes :
+`Product` représente un produit. Celui-ci a les caractéristiques suivantes :
  - **`name`** : nom du produit
  - **`type`** : type du produit. La liste des types possibles est définie dans l'énumation `Type`. Ces valeurs sont : `BOOK` (pour les livres), `FOOD` (pour la nourriture), `MEDICAL` (pour les médicaments) et `OTHER` (pour tout autre produit).
  - **`quantity`** : la quantity des produits
@@ -14,19 +13,18 @@ Un produit a les caractéristiques suivantes :
  - **`imported`** : indique si le produit est importé ou pas
 
 ### `ShoppingBag`
-Un panier d'achat contient une liste des produits.
+`ShoppingBag` représente un panier d'achat. Celui-ci contient une liste des produits.
  - **`products`** : liste des produits qui composent le panier d'achat
  
 ### `Purchase`
-`Purchase` représente un achat. 
-Un achat a les caractéristiques suivantes :
+`Purchase` représente un achat. Celui-ci a les caractéristiques suivantes :
 - **`product`** : le produit acheté
 - **`taxAmount`** : le montant des taxes appliquées pour l'achat du produit
 - **`totalAmount`** : montant du prix d'achat (taxes comprises) 
 
 ### `Invoice`
-`Invoice` représente un ticket de caisse. 
-Il liste les achats effectués, le montant total des taxes et le montant total de la facture.
+`Invoice` représente la facture des achats. 
+Celle-ci contient liste les achats effectués, le montant total des taxes et le montant total à payer.
  - **`purchases`** : liste des achats
  - **`taxAmout`** : montant total des taxes pour tous les achats
  - **`totalAmount`** : montant total des achats (taxes incluses)
@@ -59,8 +57,8 @@ Par ailleurs, l'interface `TaxCalculationStrategy` peut être implémentée par 
 
 La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite la méhtode `getTaxCalculationStrategy`.
 
-## Génération du ticket de caisse
-La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée un ticket de caisse (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
+## Génération de la facture
+La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
 
 La méthode calcule aussi le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
 
