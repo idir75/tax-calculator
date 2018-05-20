@@ -8,7 +8,7 @@ Pour modéliser le besoin de l'énoncé les classes ci-dessous ont été créée
 `Product` représente un produit. 
 Un produit a les caractéristiques suivantes :
  - **`name`** : nom du produit
- - **`type`** : type du produit. La liste des types possibles est définie dans l'énumation Type. Ces valeurs sont : BOOK (pour les livres), FOOD (pour la nourriture), MEDICAL (pour les médicaments) et OTHER (pour tout autre produit).
+ - **`type`** : type du produit. La liste des types possibles est définie dans l'énumation `Type`. Ces valeurs sont : `BOOK` (pour les livres), `FOOD` (pour la nourriture), `MEDICAL` (pour les médicaments) et `OTHER` (pour tout autre produit).
  - **`quantity`** : la quantity des produits
  - **`price`** : prix d'un produit
  - **`imported`** : indique si le produit est importé ou pas
