@@ -1,16 +1,15 @@
 package com.idird.taxcalculator;
 
-import com.idird.taxcalculator.constants.DefaultConstants;
+import static java.util.Arrays.asList;
+
+import java.math.BigDecimal;
+import java.util.Collection;
+
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.domain.product.ShoppingCart;
 import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.generator.ReceiptGenerator;
 import com.idird.taxcalculator.generator.ReceiptGeneratorImpl;
-import com.idird.taxcalculator.strategy.LocalTaxCalculationStrategyImpl;
-import java.math.BigDecimal;
-import java.util.Collection;
-
-import static java.util.Arrays.asList;
 
 /**
  * Tax Calculator project

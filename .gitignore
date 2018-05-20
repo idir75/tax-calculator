@@ -40,3 +40,12 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+tax-calculator/\.classpath
+
+tax-calculator/\.project
+
+tax-calculator/\.settings/org\.eclipse\.core\.resources\.prefs
+
+tax-calculator/\.settings/org\.eclipse\.jdt\.core\.prefs
+
+tax-calculator/\.settings/org\.eclipse\.m2e\.core\.prefs

@@ -1,7 +1,5 @@
 package com.idird.taxcalculator.domain.receipt;
 
-import com.idird.taxcalculator.domain.product.Product;
-
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.stream.Collectors;

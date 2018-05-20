@@ -1,23 +1,22 @@
 package com.idird.taxcalculator;
 
-import com.idird.taxcalculator.constants.DefaultConstants;
-import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.domain.product.ShoppingCart;
-import com.idird.taxcalculator.domain.receipt.Purchase;
-import com.idird.taxcalculator.domain.receipt.Receipt;
-import com.idird.taxcalculator.generator.ReceiptGenerator;
-import com.idird.taxcalculator.generator.ReceiptGeneratorImpl;
-import com.idird.taxcalculator.strategy.LocalTaxCalculationStrategyImpl;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static java.util.Arrays.asList;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static java.util.Arrays.asList;
+import com.idird.taxcalculator.domain.product.Product;
+import com.idird.taxcalculator.domain.product.ShoppingCart;
+import com.idird.taxcalculator.domain.receipt.Purchase;
+import com.idird.taxcalculator.domain.receipt.Receipt;
+import com.idird.taxcalculator.generator.ReceiptGenerator;
+import com.idird.taxcalculator.generator.ReceiptGeneratorImpl;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
  * Unit test for Tax Calculator.
