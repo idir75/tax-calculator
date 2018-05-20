@@ -76,8 +76,19 @@ La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais 
 En passant des instances de `DecimalRounder` au constructeur d'une stratégie, il est possible d'utiliser différentes instances de DecimalRounder (avec des valeurs différentes selon les besoins). Il est aussi possible d'utiliser l'injection de dépendance associer une instance d'un `DecimalRounder` à une instance d'une stratégie.
 
 ### Algorithme de calcul de l'arrondi
-
-
+Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
+ - Etape 1 : calculer le taux d'arrondi en centime : 5 cents correspond donc à 5%, 7 cents correspond à 7%, etc.
+ ```
+ BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
+ ```
+ 
+ - Etape 2 : calculer le ratio du montant à arrondir par rappaort au taux d'arrondi et l'arrondir. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
+ ```
+ BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
+ ```
+ 
+ - Etape 3 : multiplier le ratio par le taux d'arrondi (étape 1)
+ 
 ## Axes d'amélioration
 
 ## Conclusion
