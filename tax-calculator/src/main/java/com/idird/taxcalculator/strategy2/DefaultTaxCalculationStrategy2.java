@@ -23,16 +23,14 @@ public abstract class DefaultTaxCalculationStrategy2 implements TaxCalculationSt
         if (p_product.getPrice() == null || p_product.getPrice().compareTo(BigDecimal.ZERO) == 0) {
             return taxAmount;
         }
-        
-        taxAmount = calculateLocalTaxAmount(p_product);
-        taxAmount = taxAmount.add(calculateImportTaxAmount(p_product));
+
+        taxAmount = calculateSpecificTaxAmount(p_product);
         if (decimalRounder != null) {
             return decimalRounder.roundByDefault(taxAmount);
         }
         return taxAmount;
     }
 
-    public abstract BigDecimal calculateLocalTaxAmount(Product p_product);
+    public abstract BigDecimal calculateSpecificTaxAmount(Product p_product);
 
-    public abstract BigDecimal calculateImportTaxAmount(Product p_product);
 }

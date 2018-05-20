@@ -24,20 +24,15 @@ public class ImportTaxCalculationStrategyImpl2 extends DefaultTaxCalculationStra
     }
 
     @Override
-    public BigDecimal calculateLocalTaxAmount(Product p_product) {
+    public BigDecimal calculateSpecificTaxAmount(Product p_product) {
         BigDecimal taxAmount = BigDecimal.ZERO;
         if (p_product.getType().equals(Product.Type.OTHER)) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(localTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
-        return taxAmount;
-    }
-
-    @Override
-    public BigDecimal calculateImportTaxAmount(Product p_product) {
-        BigDecimal taxAmount = BigDecimal.ZERO;
         if (p_product.isImported()) {
             taxAmount = taxAmount.add(p_product.getPrice().multiply(importTaxMt).divide(DefaultConstants.ONE_HUNDRED));
         }
         return taxAmount;
     }
+
 }
