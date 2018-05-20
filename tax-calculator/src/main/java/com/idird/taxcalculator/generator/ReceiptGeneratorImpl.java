@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.domain.product.ShoppingCart;
+import com.idird.taxcalculator.domain.product.ShoppingBag;
 import com.idird.taxcalculator.domain.receipt.Purchase;
 import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
@@ -22,7 +22,7 @@ public class ReceiptGeneratorImpl implements ReceiptGenerator {
     }
 
     @Override
-    public Receipt getReceipt(ShoppingCart p_shoppingCart) {
+    public Receipt getReceipt(ShoppingBag p_shoppingCart) {
         Collection<Purchase> purchases = p_shoppingCart.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
         BigDecimal totalTaxAmount = purchases.stream().map(purchase -> purchase.getTaxAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal totalAmount = purchases.stream().map(purchase -> purchase.getTotalAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
