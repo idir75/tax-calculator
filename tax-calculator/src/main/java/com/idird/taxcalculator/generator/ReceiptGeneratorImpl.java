@@ -11,7 +11,6 @@ import com.idird.taxcalculator.domain.receipt.Purchase;
 import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
-import com.idird.taxcalculator.strategy3.TaxCalculationStrategy3;
 
 public class ReceiptGeneratorImpl implements ReceiptGenerator {
 
