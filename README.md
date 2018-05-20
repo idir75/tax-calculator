@@ -62,6 +62,12 @@ La classe `TaxCalculationStrategyFactory` implémente le pattern **Factory** pou
 ## Gestion des montants
 La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une méilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
 
+###`DecimalRounder`
+La classe `DecimalRounder` a les caractéristiques suivantes :
+ - `scale` : nombre de decimales après la virgule. La valeur est de 2 par défaut.
+ - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé il est de 5 cent.
+ - `roundingMode` : le mode d'arrondi.
+ 
 La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cent dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
 Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `DecimalRounder` à l'instanciation.
@@ -69,6 +75,7 @@ La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais 
 
 En passant des instances de `DecimalRounder` au constructeur d'une stratégie, il est possible d'utiliser différentes instances de DecimalRounder (avec des valeurs différentes selon les besoins). Il est aussi possible d'utiliser l'injection de dépendance associer une instance d'un `DecimalRounder` à une instance d'une stratégie.
 
+### Algorithme de calcul de l'arrondi
 
 
 ## Axes d'amélioration
