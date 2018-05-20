@@ -64,7 +64,7 @@ La classe BigDecimal est utilisée pour manipuler les montants, car elle garanti
 
 La classe `DecimalRounder` implémente le calcul de l'arrondi de 5 cent dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
-Les classes de calcul des taxes (DefaultTaxCalculationStrategy et les stratégies LocalTaxCalculationStrategyImpl et ImportTaxCalculationStrategyImpl) utilisent un objet de type DecimalRounder à l'implémentation.
+Les classes de calcul des taxes (DefaultTaxCalculationStrategy et les stratégies LocalTaxCalculationStrategyImpl et ImportTaxCalculationStrategyImpl) utilisent un objet de type DecimalRounder à l'instanciation.
 La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de DecimalRounder.
 
 En passant des instances de DecimalRounder au constructeur d'une stratégie, il est possible d'utiliser différentes instances de DecimalRounder (avec des valeurs différentes selon les besoins). Il est aussi possible d'utiliser l'injection de dépendance pour injecter un DecimalRounder à l'instanciation d'une stratégie.
