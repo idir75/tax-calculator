@@ -17,14 +17,14 @@ public class DecimalRounder {
         this.roundingMode = p_roundingMode;
     }
 
-    public BigDecimal round(BigDecimal value) {
+    public BigDecimal round(BigDecimal p_amount) {
         if (roundingRate.signum() == 0) {
-            return value;
+            return p_amount;
         }
 
         BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
-        BigDecimal divided = value.divide(percentage).setScale(0, roundingMode);
-        BigDecimal result = divided.multiply(percentage);
+        BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
+        BigDecimal result = ratio.multiply(percentage);
         return result.setScale(scale);
     }
 }

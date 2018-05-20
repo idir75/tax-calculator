@@ -1,4 +1,4 @@
-package com.idird.taxcalculator.generator;
+package com.idird.taxcalculator.invoice;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,17 +12,17 @@ import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
 import com.idird.taxcalculator.strategy.TaxCalculationStrategy;
 
-public class ReceiptGeneratorImpl implements ReceiptGenerator {
+public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
 	TaxCalculationStrategyFactory taxCalculationStrategyFactory;
 	
-    public ReceiptGeneratorImpl() {
-    	taxCalculationStrategyFactory = new TaxCalculationStrategyFactory();
+    public InvoiceGeneratorImpl(TaxCalculationStrategyFactory p_taxCalculationStrategyFactory) {
+    	taxCalculationStrategyFactory = p_taxCalculationStrategyFactory;
     }
 
     @Override
-    public Receipt getReceipt(ShoppingBag p_shoppingCart) {
-        Collection<Purchase> purchases = p_shoppingCart.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
+    public Receipt getReceipt(ShoppingBag p_shoppingBag) {
+        Collection<Purchase> purchases = p_shoppingBag.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
         BigDecimal totalTaxAmount = purchases.stream().map(purchase -> purchase.getTaxAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal totalAmount = purchases.stream().map(purchase -> purchase.getTotalAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         return new Receipt(purchases, totalTaxAmount, totalAmount);
