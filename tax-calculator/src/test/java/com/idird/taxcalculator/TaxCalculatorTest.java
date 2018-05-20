@@ -3,6 +3,7 @@ package com.idird.taxcalculator;
 import com.idird.taxcalculator.constants.DefaultConstants;
 import com.idird.taxcalculator.domain.product.Product;
 import com.idird.taxcalculator.domain.product.ShoppingCart;
+import com.idird.taxcalculator.domain.receipt.Purchase;
 import com.idird.taxcalculator.domain.receipt.Receipt;
 import com.idird.taxcalculator.generator.ReceiptGenerator;
 import com.idird.taxcalculator.generator.ReceiptGeneratorImpl;
@@ -12,7 +13,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -49,6 +52,12 @@ public class TaxCalculatorTest extends TestCase {
         Receipt receipt = receiptGenerator.getReceipt(shoppingCart);
 
         assertTrue(receipt.getPurchases().size()==3);
+        List<Purchase> purchases = new ArrayList<>(receipt.getPurchases());
+
+        assertTrue(purchases.get(0).getTotalAmount().compareTo(new BigDecimal("12.49")) == 0);
+        assertTrue(purchases.get(1).getTotalAmount().compareTo(new BigDecimal("16.49")) == 0);
+        assertTrue(purchases.get(2).getTotalAmount().compareTo(new BigDecimal("0.85")) == 0);
+
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("29.83")) == 0);
         assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("1.50")) == 0);
     }
@@ -66,6 +75,11 @@ public class TaxCalculatorTest extends TestCase {
         receipt = receiptGenerator.getReceipt(shoppingCart);
         System.out.println(receipt.toString());
         assertTrue(receipt.getPurchases().size() == 2);
+
+        List<Purchase> purchases = new ArrayList<>(receipt.getPurchases());
+        assertTrue(purchases.get(0).getTotalAmount().compareTo(new BigDecimal("10.50")) == 0);
+        assertTrue(purchases.get(1).getTotalAmount().compareTo(new BigDecimal("54.65")) == 0);
+
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("65.15")) == 0);
         assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("7.65")) == 0);
     }
@@ -84,6 +98,13 @@ public class TaxCalculatorTest extends TestCase {
         receipt = receiptGenerator.getReceipt(shoppingCart);
 
         assertTrue(receipt.getPurchases().size() == 4);
+
+        List<Purchase> purchases = new ArrayList<>(receipt.getPurchases());
+        assertTrue(purchases.get(0).getTotalAmount().compareTo(new BigDecimal("32.19")) == 0);
+        assertTrue(purchases.get(1).getTotalAmount().compareTo(new BigDecimal("20.89")) == 0);
+        assertTrue(purchases.get(2).getTotalAmount().compareTo(new BigDecimal("9.75")) == 0);
+        assertTrue(purchases.get(3).getTotalAmount().compareTo(new BigDecimal("11.85")) == 0);
+
         assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("74.68")) == 0);
         assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("6.70")) == 0);
     }
