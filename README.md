@@ -2,7 +2,7 @@
 
 ## Domaine
 
-Pour modéliser le besoin de l'énoncé les classes ci-dessous ont été créées.
+Pour modéliser le besoin de l'énoncé, les classes ci-dessous ont été créées.
 
 ### `Product`
 `Product` représente un produit. 
