@@ -35,7 +35,7 @@ public class TaxCalculator
         System.out.println(receipt.toString());
 
         System.out.println("\n Output 2");
-        Product boiteChocolatImportee = new Product("Boîte de chocolats importée", Product.Type.FOOD, 1, new BigDecimal("10.00"), true);
+        Product boiteChocolatImportee = new Product("Boîte de chocolat importée", Product.Type.FOOD, 1, new BigDecimal("10.00"), true);
         Product flaconDeParfum = new Product("Flacon de parfum importé", Product.Type.OTHER, 1, new BigDecimal("47.50"), true);
         p_products = asList(boiteChocolatImportee, flaconDeParfum);
         shoppingCart = new ShoppingCart(p_products);
