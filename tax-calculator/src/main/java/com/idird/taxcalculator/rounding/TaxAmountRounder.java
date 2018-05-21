@@ -5,13 +5,13 @@ import com.idird.taxcalculator.constants.DefaultConstants;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class DecimalRounder {
+public class TaxAmountRounder {
 
     private int scale;
     private BigDecimal roundingRate;
     private RoundingMode roundingMode;
 
-    public DecimalRounder(final int p_scale, final BigDecimal p_roundingRate, final RoundingMode p_roundingMode) {
+    public TaxAmountRounder(final int p_scale, final BigDecimal p_roundingRate, final RoundingMode p_roundingMode) {
         this.scale = p_scale;
         this.roundingRate = p_roundingRate;
         this.roundingMode = p_roundingMode;

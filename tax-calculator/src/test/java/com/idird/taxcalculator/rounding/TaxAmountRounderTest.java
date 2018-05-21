@@ -8,18 +8,18 @@ import java.math.RoundingMode;
 
 import com.idird.taxcalculator.constants.DefaultConstants;
 
-public class DecimalRounderTest extends TestCase {
+public class TaxAmountRounderTest extends TestCase {
 
-    public DecimalRounderTest( String testName )  {
+    public TaxAmountRounderTest(String testName )  {
         super( testName );
     }
 
     public static Test suite() {
-        return new TestSuite( DecimalRounderTest.class );
+        return new TestSuite( TaxAmountRounderTest.class );
     }
 
     public void testDefaultRounder() {
-        DecimalRounder defaultRounder = new DecimalRounder(DefaultConstants.DEFAULT_SCALE, DefaultConstants.DEFAULT_INCREMENT, DefaultConstants.DEFAULT_ROUNDING_MODE);
+        TaxAmountRounder defaultRounder = new TaxAmountRounder(DefaultConstants.DEFAULT_SCALE, DefaultConstants.DEFAULT_INCREMENT, DefaultConstants.DEFAULT_ROUNDING_MODE);
         
         assertEquals(new BigDecimal("3.05"), defaultRounder.round(new BigDecimal("3.03")));
         assertEquals(new BigDecimal("1.10"), defaultRounder.round(new BigDecimal("1.053")));
@@ -33,7 +33,7 @@ public class DecimalRounderTest extends TestCase {
     }
     
     public void testRounder() {
-    	DecimalRounder rounder = new DecimalRounder(DefaultConstants.DEFAULT_SCALE, DefaultConstants.DEFAULT_INCREMENT, RoundingMode.DOWN);
+    	TaxAmountRounder rounder = new TaxAmountRounder(DefaultConstants.DEFAULT_SCALE, DefaultConstants.DEFAULT_INCREMENT, RoundingMode.DOWN);
         
         assertEquals(new BigDecimal("3.00"), rounder.round(new BigDecimal("3.03")));
         assertEquals(new BigDecimal("1.05"), rounder.round(new BigDecimal("1.053")));
@@ -48,7 +48,7 @@ public class DecimalRounderTest extends TestCase {
     
     public void testRounder2() {
     	int scale = 3;
-    	DecimalRounder rounder = new DecimalRounder(scale, DefaultConstants.DEFAULT_INCREMENT, RoundingMode.DOWN);
+    	TaxAmountRounder rounder = new TaxAmountRounder(scale, DefaultConstants.DEFAULT_INCREMENT, RoundingMode.DOWN);
         
         assertEquals(new BigDecimal("3.000"), rounder.round(new BigDecimal("3.03")));
         assertEquals(new BigDecimal("1.050"), rounder.round(new BigDecimal("1.053")));

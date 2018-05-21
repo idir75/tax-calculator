@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 
 import com.idird.taxcalculator.constants.DefaultConstants;
 import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.rounding.DecimalRounder;
+import com.idird.taxcalculator.rounding.TaxAmountRounder;
 
 public class LocalTaxCalculationStrategyImpl extends DefaultTaxCalculationStrategy {
 
     private final BigDecimal localTaxMt;
 
-    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, DecimalRounder p_decimalRounder) {
-        super(p_decimalRounder);
+    public LocalTaxCalculationStrategyImpl(BigDecimal p_localTaxMt, TaxAmountRounder p_taxAmountRounder) {
+        super(p_taxAmountRounder);
         this.localTaxMt = p_localTaxMt;
     }
 

@@ -1,16 +1,16 @@
 package com.idird.taxcalculator.strategy;
 
 import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.rounding.DecimalRounder;
+import com.idird.taxcalculator.rounding.TaxAmountRounder;
 
 import java.math.BigDecimal;
 
 public abstract class DefaultTaxCalculationStrategy implements TaxCalculationStrategy {
 
-    private final DecimalRounder decimalRounder;
+    private final TaxAmountRounder taxAmountRounder;
 
-    public DefaultTaxCalculationStrategy(DecimalRounder p_decimalRounder) {
-        this.decimalRounder = p_decimalRounder;
+    public DefaultTaxCalculationStrategy(TaxAmountRounder p_taxAmountRounder) {
+        this.taxAmountRounder = p_taxAmountRounder;
     }
 
     @Override
@@ -25,10 +25,10 @@ public abstract class DefaultTaxCalculationStrategy implements TaxCalculationStr
         }
 
         taxAmount = calculateSpecificTaxAmount(p_product);
-        if (decimalRounder == null) {
+        if (taxAmountRounder == null) {
         	return taxAmount;
         }
-        return decimalRounder.round(taxAmount);
+        return taxAmountRounder.round(taxAmount);
     }
 
     public abstract BigDecimal calculateSpecificTaxAmount(Product p_product);
