@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.domain.product.ShoppingBag;
+import com.idird.taxcalculator.domain.product.ShoppingCart;
 import com.idird.taxcalculator.domain.invoice.Purchase;
 import com.idird.taxcalculator.domain.invoice.Invoice;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
@@ -21,8 +21,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     }
 
     @Override
-    public Invoice getInvoice(ShoppingBag p_shoppingBag) {
-        Collection<Purchase> purchases = p_shoppingBag.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
+    public Invoice getInvoice(ShoppingCart p_shoppingCart) {
+        Collection<Purchase> purchases = p_shoppingCart.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
         BigDecimal totalTaxAmount = purchases.stream().map(purchase -> purchase.getTaxAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal totalAmount = purchases.stream().map(purchase -> purchase.getTotalAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         return new Invoice(purchases, totalTaxAmount, totalAmount);

@@ -2,11 +2,11 @@ package com.idird.taxcalculator.domain.product;
 
 import java.util.Collection;
 
-public class ShoppingBag {
+public class ShoppingCart {
 
     private Collection<Product> products;
 
-    public ShoppingBag(Collection<Product> p_products) {
+    public ShoppingCart(Collection<Product> p_products) {
         this.products = p_products;
     }
 
