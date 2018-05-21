@@ -37,11 +37,11 @@ La classe `Purchase` permet de modéliser le calcul des taxes sur les produits. 
 ### Principe
 Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Une taxe spéciale est appliquée sur les produits importés.
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
-Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
+Il est aussi possible de définir d'autres taxes selon les produits.
 
-Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. L'opération d'arrondi est commune quelque que soit la taxe appliquée. A noter également qu'il faut donner la possibilité de changer le montant d'arrondi.
+Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. L'opération d'arrondi est commune quelque que soit la taxe appliquée. Cependant, ce montant peut varier.
 
-Le pattern **Strategy** est associé au pattern **Template method** pour permettre de définir des stratégies de calcul différentes tout en permettant d'avoir un traitement commun à toutes ces stratégies.
+Le pattern **Strategy** est associé au pattern **Template method** pour permettre de définir des stratégies de calcul de taxes différentes tout en permettant d'avoir un traitement commun à toutes ces stratégies.
 
 ### Implémentation
 L'interface `TaxCalculationStrategy` déclare la méthode `calculateTaxAmount` pour calculer la taxe du produit passé en paramètre.
