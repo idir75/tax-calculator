@@ -87,7 +87,7 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  BigDecimal percentage = roundingMt.divide(DefaultConstants.ONE_HUNDRED);
  ```
  
- - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux et l'arrondir le résultat obtenu. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
+ - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux et arrondir le résultat obtenu. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
  ```
  BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
  ```
