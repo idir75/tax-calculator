@@ -39,7 +39,7 @@ Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Un
 Le calcul des taxes varie donc selon le type du produit et selon le fait qu'il soit importé ou pas.
 Ce n'est pas le cas dans le cadre de cet énonce, mais il est aussi possible de définir d'autres taxes selon les produits.
 
-Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. Cet arrondi est commun quelque que soit la taxe appliquée.
+Pour tout type de calcul, on applique un arrondi de 5 cents supérieurs sur les montants. L'opération d'arrondi est commune quelque que soit la taxe appliquée. A noter également qu'il faut donner la possibilité de changer le montant d'arrondi.
 
 Le pattern **Strategy** est associé au pattern **Template method** pour permettre de définir des stratégies de calcul différentes tout en permettant d'avoir un traitement commun à toutes ces stratégies.
 
@@ -70,7 +70,7 @@ La classe BigDecimal est utilisée pour manipuler les montants, car elle garanti
 ### `TaxAmountRounder`
 La classe `TaxAmountRounder` a les caractéristiques suivantes :
  - `scale` : nombre de décimales après la virgule. La valeur est de 2 par défaut.
- - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
+ - `roundingRate` : le montant d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
 La classe `TaxAmountRounder` implémente le calcul de l'arrondi de `roundingRate` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
@@ -82,7 +82,7 @@ Il est donc possible de modifier la logique d'arrondi dans la classe `TaxAmountR
 
 ### Algorithme de calcul de l'arrondi
 Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
- - Étape 1 : calculer le taux d'arrondi en centimes : 5 cents correspond à 5%, 7 cents correspond à 7%, etc.
+ - Étape 1 : calculer le montant d'arrondi en centimes : 5 cents correspond à 5%, 7 cents correspond à 7%, etc.
  ```
  BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
  ```
@@ -92,7 +92,7 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
  ```
  
- - Étape 3 : multiplier le ratio par le taux d'arrondi calculé à l'étape 1.
+ - Étape 3 : multiplier le ratio par le montant d'arrondi calculé à l'étape 1.
 
 ## Technologies
  - JDK : 1.8.0_151
