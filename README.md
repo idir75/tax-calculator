@@ -70,10 +70,10 @@ La classe BigDecimal est utilisée pour manipuler les montants, car elle garanti
 ### `TaxAmountRounder`
 La classe `TaxAmountRounder` a les caractéristiques suivantes :
  - `scale` : nombre de décimales après la virgule. La valeur est de 2 par défaut.
- - `roundingRate` : le montant d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
+ - `roundingMt` : le montant d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
-La classe `TaxAmountRounder` implémente le calcul de l'arrondi de `roundingRate` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
+La classe `TaxAmountRounder` implémente le calcul de l'arrondi de `roundingMt` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
 Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `TaxAmountRounder` à l'instanciation.
 La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de `TaxAmountRounder`.
@@ -84,7 +84,7 @@ Il est donc possible de modifier la logique d'arrondi dans la classe `TaxAmountR
 Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
  - Étape 1 : calculer le montant d'arrondi en centimes : 5 cents correspond à 5%, 7 cents correspond à 7%, etc.
  ```
- BigDecimal percentage = roundingRate.divide(DefaultConstants.ONE_HUNDRED);
+ BigDecimal percentage = roundingMt.divide(DefaultConstants.ONE_HUNDRED);
  ```
  
  - Étape 2 : calculer le ratio du montant à arrondir par rapport au taux et l'arrondir le résultat obtenu. La méthode `setScale` permet d'arrondir selon le mode d'arrondi `roundingMode`
