@@ -12,8 +12,8 @@ Pour modéliser le besoin de l'énoncé, les classes ci-dessous ont été créé
  - **`price`** : prix d'un produit
  - **`imported`** : indique si le produit est importé ou pas
 
-### `ShoppingBag`
-`ShoppingBag` représente un panier d'achat. Celui-ci contient une liste des produits.
+### `ShoppingCart`
+`ShoppingCart` représente un panier d'achat. Celui-ci contient une liste des produits.
  - **`products`** : liste des produits qui composent le panier d'achat
  
 ### `Purchase`
@@ -58,7 +58,7 @@ Par ailleurs, on peut définir d'autres classes stratégies qui implémentent l'
 La classe `TaxCalculationStrategyFactory` utilise le pattern **Factory** pour associer une stratégie à un produit donné. L'implémentation de ce pattern est faite dans la méthode `getTaxCalculationStrategy`.
 
 ## Génération de la facture
-La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingBag`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
+La classe `InvoiceGeneratorImpl` qui implémente l'interface `InvoiceGenerator` crée une facture (`Invoice`) à partir d'un panier (`ShoppingCart`) passé en paramètre. Pour cela, elle crée une liste d'achats (`Purchase`) à partir de la liste des produits contenu dans le panier.
 
 La méthode calcule également le montant total des taxes sur tous les achats ainsi que le montant total de la facture.
 
