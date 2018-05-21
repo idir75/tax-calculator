@@ -99,12 +99,12 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  - Maven : 3.5.3
 
 ## Tests
-La classe de test est `TaxCalculator`.
-
-Pour l'exécuter, il faut : 
+Pour compiler et exécuter le code, il faut :
  - Configurer un JDK 1.8 dans la variable PATH
- - Lancer le fichier `tax-calculation.bat` en ligne de commande
+ - Configurer Maven dans la variable PATH
  
+La classe principale est `TaxCalculator`.
+
  ### Tests unitaires avec Junit
 La classe `TaxAmountRounderTest` implémente les tests unitaires liés à aux arrondis supérieurs.
 
