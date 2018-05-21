@@ -106,5 +106,8 @@ Pour l'exécuter, il faut :
  - Lancer le fichier `tax-calculation.bat` en ligne de commande
  
  ### Tests unitaires avec Junit
-La classe 
+La classe `TaxAmountRounderTest` implémente les tests unitaires liés à aux arrondis supérieurs.
+
+La classe `TaxCalculatorTest` implémente les tests unitaires liés aux Input 1, Input 2 et Input 3 donnés dans l'énoncé.
+
 
