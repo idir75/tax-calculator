@@ -67,18 +67,18 @@ La méthode interne `getPurchase` crée un achat à partir du produit passé en 
 ## Gestion des montants
 La classe BigDecimal est utilisée pour manipuler les montants, car elle garantit une meilleure précision par rapport aux autres types comme Double (ou double) ou Float (ou float).
 
-### `DecimalRounder`
-La classe `DecimalRounder` a les caractéristiques suivantes :
+### `TaxAmountRounder`
+La classe `TaxAmountRounder` a les caractéristiques suivantes :
  - `scale` : nombre de décimales après la virgule. La valeur est de 2 par défaut.
  - `roundingRate` : le taux d'arrondi appliqué. Dans le cas de l'énoncé, il est de 5 cents.
  - `roundingMode` : le mode d'arrondi. Dans le cas de l'énoncé, il est demandé d'utiliser l'arrondi supérieur.
  
-La classe `DecimalRounder` implémente le calcul de l'arrondi de `roundingRate` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
+La classe `TaxAmountRounder` implémente le calcul de l'arrondi de `roundingRate` cents supérieurs dans la méthode `round`. Cette méthode permet aussi d'appliquer un nombre de décimale après la virgule.
 
-Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `DecimalRounder` à l'instanciation.
-La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de `DecimalRounder`.
+Les classes de calcul des taxes (`DefaultTaxCalculationStrategy` et les stratégies `LocalTaxCalculationStrategyImpl` et `ImportTaxCalculationStrategyImpl`) utilisent un objet de type `TaxAmountRounder` à l'instanciation.
+La gestion des arrondis n'est donc pas faite directement par l'algorithme, mais déléguée à une instance de `TaxAmountRounder`.
 
-Il est donc possible de modifier la logique d'arrondi dans la classe `DecimalRounder` sans impacter le calcul des taxes.
+Il est donc possible de modifier la logique d'arrondi dans la classe `TaxAmountRounder` sans impacter le calcul des taxes.
 
 ### Algorithme de calcul de l'arrondi
 Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivant :
@@ -98,10 +98,13 @@ Pour calculer l'arrondi 5 cents supérieurs, l'algorithme utilisé est le suivan
  - JDK : 1.8.0_151
  - Maven : 3.5.3
 
-## Utilisation
+## Tests
 La classe de test est `TaxCalculator`.
 
-Pour exécuter le programme, il faut : 
- - Ajouter la déclaration d'un JDK 1.8 dans la variable PATH
+Pour l'exécuter, il faut : 
+ - Configurer un JDK 1.8 dans la variable PATH
  - Lancer le fichier `tax-calculation.bat` en ligne de commande
+ 
+ ### Tests unitaires avec Junit
+La classe 
 
