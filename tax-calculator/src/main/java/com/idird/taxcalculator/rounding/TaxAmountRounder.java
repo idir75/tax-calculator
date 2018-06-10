@@ -23,7 +23,7 @@ public class TaxAmountRounder {
         }
 
         BigDecimal percentage = roundingMt.divide(DefaultConstants.ONE_HUNDRED);
-        BigDecimal ratio = p_amount.divide(percentage).setScale(0, roundingMode);
+        BigDecimal ratio = p_amount.divide(percentage, 0, roundingMode);
         BigDecimal result = ratio.multiply(percentage);
         return result.setScale(scale);
     }

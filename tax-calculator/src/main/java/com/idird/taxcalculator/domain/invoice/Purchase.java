@@ -9,9 +9,11 @@ public class Purchase {
     private Product product;
     private BigDecimal taxAmount;
     private BigDecimal totalAmount;
+    private int quantity;
 
-    public Purchase(Product p_product, BigDecimal p_taxAmount, BigDecimal p_totalAmount) {
+    public Purchase(Product p_product, int p_quantity, BigDecimal p_taxAmount, BigDecimal p_totalAmount) {
         this.product = p_product;
+        this.quantity = p_quantity;
         this.taxAmount = p_taxAmount;
         this.totalAmount = p_totalAmount;
     }
@@ -40,9 +42,19 @@ public class Purchase {
         this.totalAmount = totalAmount;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         StringBuffer result = new StringBuffer();
+        result.append(quantity);
+        result.append(" ");
         result.append(product.toString());
         result.append(" : " + getTotalAmount());
         return result.toString();

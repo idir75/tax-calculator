@@ -12,16 +12,13 @@ public class Product {
 
     private Type type;
 
-    private int quantity;
-
     private BigDecimal price;
 
     private boolean imported;
 
-    public Product(String p_name, Type p_type, int p_quantity, BigDecimal p_price, boolean p_imported) {
+    public Product(String p_name, Type p_type, BigDecimal p_price, boolean p_imported) {
         this.name = p_name;
         this.type = p_type;
-        this.quantity = p_quantity;
         this.price = p_price;
         this.imported = p_imported;
     }
@@ -40,14 +37,6 @@ public class Product {
 
     public void setType(Type type) {
         this.type = type;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public BigDecimal getPrice() {
@@ -69,7 +58,6 @@ public class Product {
     @Override
     public String toString() {
         StringBuffer result = new StringBuffer();
-        result.append(quantity);
         result.append(" ");
         result.append(name);
         return result.toString();

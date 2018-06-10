@@ -10,6 +10,7 @@ public class Invoice {
     private BigDecimal taxAmout;
     private BigDecimal totalAmount;
 
+
     public Invoice(Collection<Purchase> p_purchases, BigDecimal p_taxAmout, BigDecimal p_totalAmount) {
         this.purchases = p_purchases;
         this.taxAmout = p_taxAmout;

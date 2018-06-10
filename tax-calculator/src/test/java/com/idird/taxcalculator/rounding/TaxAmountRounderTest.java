@@ -58,4 +58,15 @@ public class TaxAmountRounderTest extends TestCase {
         assertEquals(new BigDecimal("0.950"), rounder.round(new BigDecimal("0.99")));
         assertEquals(new BigDecimal("1.000"), rounder.round(new BigDecimal("1.00")));
     }
+    
+    public void testRounder3() {
+    	int scale = 2;
+    	TaxAmountRounder rounder = new TaxAmountRounder(scale, new BigDecimal("6"), RoundingMode.UP);
+        
+        assertEquals(new BigDecimal("1.02"), rounder.round(new BigDecimal("0.99")));
+        assertEquals(new BigDecimal("1.02"), rounder.round(new BigDecimal("1.00")));
+        assertEquals(new BigDecimal("1.02"), rounder.round(new BigDecimal("1.01")));
+        assertEquals(new BigDecimal("1.02"), rounder.round(new BigDecimal("1.02")));
+
+    }
 }

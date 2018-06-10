@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.idird.taxcalculator.domain.product.Product;
-import com.idird.taxcalculator.domain.product.ShoppingCart;
+import com.idird.taxcalculator.domain.invoice.ShoppingCart;
 import com.idird.taxcalculator.domain.invoice.Purchase;
 import com.idird.taxcalculator.domain.invoice.Invoice;
 import com.idird.taxcalculator.factory.TaxCalculationStrategyFactory;
@@ -21,14 +21,15 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     }
 
     @Override
-    public Invoice getInvoice(ShoppingCart p_shoppingCart) {
-        Collection<Purchase> purchases = p_shoppingCart.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
+    public Invoice generateInvoice(ShoppingCart p_shoppingCart) {
+        //Collection<Purchase> purchases = p_shoppingCart.getProducts().stream().map(this::getPurchase).collect(Collectors.toCollection(ArrayList::new));
+        Collection<Purchase> purchases = p_shoppingCart.getPurchases().stream().collect(Collectors.toCollection(ArrayList::new));
         BigDecimal totalTaxAmount = purchases.stream().map(purchase -> purchase.getTaxAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal totalAmount = purchases.stream().map(purchase -> purchase.getTotalAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
         return new Invoice(purchases, totalTaxAmount, totalAmount);
     }
 
-    private Purchase getPurchase(Product p_product) {
+    /*private Purchase getPurchase(Product p_product) {
         BigDecimal quantityAsBigDecimal = new BigDecimal(p_product.getQuantity());
         
         //TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
@@ -37,5 +38,14 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
         BigDecimal totalAmount = p_product.getPrice().multiply(quantityAsBigDecimal).add(taxAmount);
         return new Purchase(p_product, taxAmount, totalAmount);
+    }*/
+
+    @Override
+    public Purchase generatePurchase(Product p_product, int p_quantity) {
+        BigDecimal quantityAsBigDecimal = new BigDecimal(p_quantity);
+        TaxCalculationStrategy taxCalculationStrategy  = taxCalculationStrategyFactory.getTaxCalculationStrategy(p_product);
+        BigDecimal taxAmount = taxCalculationStrategy.calculateTaxAmount(p_product).multiply(quantityAsBigDecimal);
+        BigDecimal totalAmount = p_product.getPrice().multiply(quantityAsBigDecimal).add(taxAmount);
+        return new Purchase(p_product, p_quantity, taxAmount, totalAmount);
     }
 }
