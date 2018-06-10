@@ -33,6 +33,9 @@ Celle-ci contient liste les achats effectués, le montant total des taxes et le 
 La taxe n'est pas une propriété inhérente au produit, elle ne doit donc pas être définie dans la classe `Product`.
 La classe `Purchase` permet de modéliser le calcul des taxes sur les produits. Elle permet aussi de calculer le prix total en tenant compte des taxes appliquées.
 
+La classe `InvoiceGenerator` ne doit pas gérer des objets de type `ShoppingCart` en interne. Si tel est le cas, à chaque fois qu'on a généré la facture d'un panier d'achat, il faut appeler une méthode pour réinitialiser ce panier, et une autre méthode pour ajouter le nouveau panier.
+
+
 ## Calcul des taxes
 ### Principe
 Une taxe est appliquée sur certains types de produits mais pas sur d'autres. Une taxe spéciale est appliquée sur les produits importés.
