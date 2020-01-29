@@ -48,13 +48,13 @@ public class TaxCalculatorTest extends TestCase  {
         Product book = new Product("Livre", Product.TYPE.BOOK.name(), 1, new BigDecimal("12.49"), false);
         Product cd = new Product("CD musical", Product.TYPE.OTHER.name(), 1, new BigDecimal("14.99"), false);
         Product barreDeChocolat = new Product("barre de chocolat", Product.TYPE.FOOD.name(), 1, new BigDecimal("0.85"), false);
-        Collection<Product> p_products = asList(book, cd, barreDeChocolat);
-        ShoppingCart shoppingCart = new ShoppingCart(p_products);
+        Collection<Product> products = asList(book, cd, barreDeChocolat);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
         Receipt receipt = receiptGenerationService.getReceipt(shoppingCart);
 
-        assertTrue(receipt.getPurchases().size()==3);
-        assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("29.83")) == 0);
-        assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("1.50")) == 0);
+        assertEquals(3, receipt.getPurchases().size());
+        assertEquals(0, receipt.getTotalAmount().compareTo(new BigDecimal("29.83")));
+        assertEquals(0, receipt.getTaxAmout().compareTo(new BigDecimal("1.50")));
     }
 
     public void testTaxCalculatorOutput2() {
@@ -63,19 +63,15 @@ public class TaxCalculatorTest extends TestCase  {
         int scale = 2;
         TaxCalculationStrategy taxCalculationStrategy = new TaxCalculationStrategyImpl(localTaxMt, importTaxMt, scale);
         ReceiptGenerationService receiptGenerationService = new ReceiptGenerationServiceImpl(taxCalculationStrategy);
-        Collection<Product> p_products;
-        ShoppingCart shoppingCart;
-        Receipt receipt;
-
         Product boiteChocolatImportee = new Product("Boîte de chocolats importée", Product.TYPE.FOOD.name(), 1, new BigDecimal("10.00"), true);
         Product flaconDeParfum = new Product("Flacon de parfum", Product.TYPE.OTHER.name(), 1, new BigDecimal("47.50"), true);
-        p_products = asList(boiteChocolatImportee, flaconDeParfum);
-        shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptGenerationService.getReceipt(shoppingCart);
+        Collection<Product> product = asList(boiteChocolatImportee, flaconDeParfum);
+        ShoppingCart shoppingCart = new ShoppingCart(product);
+        Receipt receipt = receiptGenerationService.getReceipt(shoppingCart);
         System.out.println(receipt.toString());
-        assertTrue(receipt.getPurchases().size() == 2);
-        assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("65.15")) == 0);
-        assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("7.65")) == 0);
+        assertEquals(2, receipt.getPurchases().size());
+        assertEquals(0, receipt.getTotalAmount().compareTo(new BigDecimal("65.15")));
+        assertEquals(0, receipt.getTaxAmout().compareTo(new BigDecimal("7.65")));
     }
 
     public void testTaxCalculatorOutput3() {
@@ -84,19 +80,17 @@ public class TaxCalculatorTest extends TestCase  {
         int scale = 2;
         TaxCalculationStrategy taxCalculationStrategy = new TaxCalculationStrategyImpl(localTaxMt, importTaxMt, scale);
         ReceiptGenerationService receiptGenerationService = new ReceiptGenerationServiceImpl(taxCalculationStrategy);
-        Collection<Product> p_products;
-        ShoppingCart shoppingCart;
-        Receipt receipt;
         Product flaconDeParfum2 = new Product("Flacon de parfum importé", Product.TYPE.OTHER.name(), 1, new BigDecimal("27.99"), true);
         Product flaconDeParfum3 = new Product("Flacon de parfum", Product.TYPE.OTHER.name(), 1, new BigDecimal("18.99"), false);
         Product boiteDePilulesContreLaMigraine = new Product("boîte de pilules contre la migraine", Product.TYPE.MEDICAL.name(),  1, new BigDecimal("9.75"), false);
         Product boiteDeChocolatImportee = new Product("boîte de chocolat importée", Product.TYPE.MEDICAL.name(),  1, new BigDecimal("11.25"), true);
-        p_products = asList(flaconDeParfum2, flaconDeParfum3, boiteDePilulesContreLaMigraine, boiteDeChocolatImportee);
-        shoppingCart = new ShoppingCart(p_products);
-        receipt = receiptGenerationService.getReceipt(shoppingCart);
+        Collection<Product> products = asList(flaconDeParfum2, flaconDeParfum3, boiteDePilulesContreLaMigraine, boiteDeChocolatImportee);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
+        Receipt receipt = receiptGenerationService.getReceipt(shoppingCart);
 
-        assertTrue(receipt.getPurchases().size() == 4);
-        assertTrue(receipt.getTotalAmount().compareTo(new BigDecimal("74.68")) == 0);
-        assertTrue(receipt.getTaxAmout().compareTo(new BigDecimal("6.70")) == 0);
+        assertEquals(4, receipt.getPurchases().size());
+        assertEquals(0, receipt.getTotalAmount().compareTo(new BigDecimal("74.68")));
+        assertEquals(0, receipt.getTaxAmout().compareTo(new BigDecimal("6.70")));
     }
+
 }
